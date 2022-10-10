@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+source "$SCRIPT_DIR/assets/menuItems.conf"
+echo "Start Menu:"
+PS3="Choose a Option: "
+select opt in "${MENU_ITEM_LABELS[@]}"; do
+	if [[ "$opt" != "" ]]; then
+		${MENU_ITEM_COMMANDS[$((REPLY - 1))]}
+		break;
+	else
+		echo "Invaild Option"
+	fi
+done
